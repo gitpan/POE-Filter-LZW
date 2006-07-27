@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
 			  'NAME'	=> 'POE::Filter::LZW',
 			  'PREREQ_PM' => {
-							  'POE'    => 0.31,
+							  'POE'    => 0.3501,
 							  'Compress::LZW' => 0,
 							  'Carp' => 0,
 							 },

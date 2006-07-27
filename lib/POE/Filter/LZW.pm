@@ -5,7 +5,7 @@ use Compress::LZW qw(compress decompress);
 use vars qw($VERSION);
 use base qw(POE::Filter);
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 sub PUT_LITERAL () { 1 }
 
@@ -13,20 +13,15 @@ sub new {
   my $type = shift;
   croak "$type requires an even number of parameters" if @_ % 2;
   my $buffer = { @_ };
-  foreach my $option ( keys %{ $buffer } ) {
-	$buffer->{ lc( $option) } = delete( $buffer->{ $option } );
-  }
+  $buffer->{ lc $_ } = delete $buffer->{ $_ } for keys %{ $buffer };
   $buffer->{BUFFER} = [];
-  return bless($buffer, $type);
+  return bless $buffer, $type;
 }
 
 sub level {
   my $self = shift;
   my $level = shift;
-
-  if ( defined ( $level ) ) {
-	$self->{level} = $level;
-  }
+  $self->{level} = $level if defined $level;
   return $self->{level};
 }
 
@@ -36,7 +31,7 @@ sub get {
 
   foreach my $raw_line (@$raw_lines) {
 	if ( my $line = decompress( $raw_line ) ) {
-		push( @$events, $line );
+		push @$events, $line;
 	} else {
 		warn "Couldn\'t decompress input\n";
 	}
@@ -46,23 +41,16 @@ sub get {
 
 sub get_one_start {
   my ($self, $raw_lines) = @_;
-
-  foreach my $raw_line (@$raw_lines) {
-	if ( my $line = decompress( $raw_line ) ) {
-		push( @$events, $line );
-	} else {
-		warn "Couldn\'t decompress input\n";
-	}
-  }
+  push @{ $self->{BUFFER} }, $_ for @{ $raw_lines };
 }
 
 sub get_one {
   my $self = shift;
   my $events = [];
 
-  if ( my $raw_line = shift ( @{ $self->{BUFFER} } ) ) {
+  if ( my $raw_line = shift @{ $self->{BUFFER} } ) {
 	if ( my $line = decompress( $raw_line ) ) {
-		push( @$events, $line );
+		push @$events, $line;
 	} else {
 		warn "Couldn\'t decompress input\n";
 	}
@@ -76,7 +64,7 @@ sub put {
 
   foreach my $event (@$events) {
 	if ( my $line = compress( $event, $self->{level} ) ) {
-		push( @$raw_lines, $line );
+		push @$raw_lines, $line;
 	} else {
 		warn "Couldn\'t compress output\n";
 	}
