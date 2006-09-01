@@ -5,9 +5,7 @@ use Compress::LZW qw(compress decompress);
 use vars qw($VERSION);
 use base qw(POE::Filter);
 
-$VERSION = '1.2';
-
-sub PUT_LITERAL () { 1 }
+$VERSION = '1.3';
 
 sub new {
   my $type = shift;
@@ -100,27 +98,35 @@ POE::Filter::LZW -- A POE filter wrapped around Compress::LZW
 POE::Filter::LZW provides a POE filter for performing compression/decompression using L<Compress::LZW|Compress::LZW>. It is
 suitable for use with L<POE::Filter::Stackable|POE::Filter::Stackable>.
 
+=head1 CONSTRUCTOR
+
+=over
+
+=item new
+
+Creates a new POE::Filter::LZW object. 
+
+=back
+
 =head1 METHODS
 
 =over
 
-=item *
+=item get_one_start
 
-new
+=item get_one
 
-Creates a new POE::Filter::LZW object. 
-
-=item *
-
-get
+=item get
 
 Takes an arrayref which is contains lines of compressed input. Returns an arrayref of decompressed lines.
 
-=item *
-
-put
+=item put
 
 Takes an arrayref containing lines of uncompressed output, returns an arrayref of compressed lines.
+
+=item level
+
+Sets the compression level. Consult L<Compress::LZW> for details.
 
 =back
 
@@ -131,7 +137,9 @@ Chris Williams <chris@bingosnet.co.uk>
 =head1 SEE ALSO
 
 L<POE|POE>
+
 L<Compress::LZW|Compress::LZW>
+
 L<POE::Filter::Stackable|POE::Filter::Stackable>
 
 =cut
