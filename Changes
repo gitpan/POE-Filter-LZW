@@ -1,6 +1,10 @@
 POE::Filter::LZW
 ================
 
+1.4	Sun Sep 10 09:26:34 BST 2006
+	- Makefile.PL was executable. Fixed.
+	- Added 'use strict'.
+
 1.3	Date
 	- Added pod and pod coverage tests
 	- Added Changes file
