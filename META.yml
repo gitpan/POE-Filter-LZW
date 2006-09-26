@@ -1,13 +1,15 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         POE-Filter-LZW
-version:      1.4
-version_from: lib/POE/Filter/LZW.pm
-installdirs:  site
-requires:
-    Carp:                          0
-    Compress::LZW:                 0
-    POE:                           0.3501
-
+author: 'Chris Williams <chris@bingosnet.co.uk>'
 distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+generated_by: Module::Install version 0.64
+license: perl
+module_name: POE::Filter::LZW
+name: POE-Filter-LZW
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Carp: 0
+  Compress::LZW: 0
+  POE: 0.3501
+version: 1.5
