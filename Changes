@@ -1,6 +1,9 @@
 POE::Filter::LZW
 ================
 
+1.61	Mon Feb 26 13:27:56 GMT 2007
+	- Added kwalitee test.
+
 1.60	Thu Feb 01 14:30:59 GMT 2007
 	- Makefile.PL now fully Module::Install-ified.
 
