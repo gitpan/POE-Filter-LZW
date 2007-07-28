@@ -6,7 +6,7 @@ use Compress::LZW qw(compress decompress);
 use vars qw($VERSION);
 use base qw(POE::Filter);
 
-$VERSION = '1.61';
+$VERSION = '1.62';
 
 sub new {
   my $type = shift;
@@ -80,7 +80,7 @@ __END__
 
 =head1 NAME
 
-POE::Filter::LZW -- A POE filter wrapped around Compress::LZW
+POE::Filter::LZW - A POE filter wrapped around Compress::LZW
 
 =head1 SYNOPSIS
 
