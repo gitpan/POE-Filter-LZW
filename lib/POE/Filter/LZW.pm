@@ -1,12 +1,13 @@
 package POE::Filter::LZW;
 
 use strict;
+use warnings;
 use Carp;
 use Compress::LZW qw(compress decompress);
 use vars qw($VERSION);
 use base qw(POE::Filter);
 
-$VERSION = '1.64';
+$VERSION = '1.66';
 
 sub new {
   my $type = shift;
