@@ -22,4 +22,4 @@ requires:
   Compress::LZW: 0
   POE: 0.38
   POE::Filter: 0
-version: 1.68
+version: 1.70

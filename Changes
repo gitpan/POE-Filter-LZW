@@ -1,6 +1,9 @@
 POE::Filter::LZW
 ================
 
+1.70	Mon Jun 30 17:25:48 BST 2008
+	- Fixed problems with MANIFEST
+
 1.68	Sat Jun 28 09:21:13 BST 2008
 	- Added LICENSE information
 
